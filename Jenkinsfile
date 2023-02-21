@@ -4,14 +4,14 @@ pipeline {
     githubPush()
   }
     stages {
-         stage('Clone repository') {
-            steps {
-                git url: 'https://github.com/AhmedRkk/CRUD-test-Spark-it.git', branch: 'main'
+        stage('Checkout'){
+            steps{
+                checkout scm
             }
         }
         stage('Hello') {
             steps {
-                echo 'Hello ahmed'
+                bat 'echo "Hello ahmed" '
             }
         }
     }
