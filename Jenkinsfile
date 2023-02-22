@@ -12,7 +12,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                bat 'docker-compose -f D:/PFE_Spark-it/springboot3-angular14-crud/backend/crud-application/docker-compose.yml up --build '
+                bat 'docker-compose -f D:/PFE_Spark-it/springboot3-angular14-crud/backend/crud-application/docker-compose.yml up --build -d  '
                 
             }
         }

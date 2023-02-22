@@ -1,5 +1,5 @@
 # Base image
-FROM openjdk:17-jdk-alpine
+FROM maven:3.8.4-openjdk-17-slim
 
 # Set the working directory
 WORKDIR /app
@@ -7,7 +7,6 @@ WORKDIR /app
 # Copy the project files to the container
 COPY . .
 
-RUN apk add --no-cache maven
 
 # Build the application
 RUN mvn package -DskipTests
