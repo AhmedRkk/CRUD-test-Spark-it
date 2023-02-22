@@ -9,19 +9,11 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Build') {
+        stage('Hello') {
             steps {
-                bat 'docker-compose -f D:/PFE Spark-it/springboot3-angular14-crud/backend/crud-application/docker-compose.yml up --build -d sql_server'
-                
+                bat 'echo "Hello ahmed" '
             }
         }
     }
-    post {
-        success {
-            bat 'echo "success"'
-        }
-        failure {
-            bat 'echo "Build failed"'
-        }
-    }
+
 }
