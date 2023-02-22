@@ -16,7 +16,6 @@ pipeline {
             }
         }
     }
-
     post {
         success {
             bat 'echo "success"'
