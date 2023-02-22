@@ -1,0 +1,60 @@
+version: '3'
+services:
+  sql_server:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    ports:
+        - "1433:1433"
+    environment:
+      SA_PASSWORD: "Spark-It2020"
+      ACCEPT_EULA: "Y"
+
+      MSSQL_PID: "Developer"
+      MSSQL_TCP_PORT: 1433
+      name: "sql1"
+    networks:
+      my-network:
+        ipv4_address: 172.16.238.10
+    restart: always
+  adminer:
+    image: adminer:latest
+    container_name: adminer
+    restart: always
+    depends_on:
+      - sql_server
+    ports:
+      - 8888:8080
+    networks:
+      - my-network
+
+
+  frontend:
+    build:
+      context: D:\PFE Spark-it\springboot3-angular14-crud\frontend\crud-application
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    networks:
+      - my-network
+    restart: always
+
+  app:
+    build:
+      context: D:\PFE Spark-it\springboot3-angular14-crud\backend\crud-application
+      dockerfile: Dockerfile
+    ports:
+      - "9080:8080"
+    depends_on:
+      - sql_server
+
+    networks:
+      - my-network
+    restart: always
+
+
+networks:
+  my-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.238.0/24
