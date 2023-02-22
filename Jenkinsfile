@@ -24,4 +24,5 @@ pipeline {
         failure {
             bat 'echo "Build failed"'
         }
+    }
 }
