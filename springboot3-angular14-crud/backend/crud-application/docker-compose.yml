@@ -29,7 +29,7 @@ services:
 
   frontend:
     build:
-      context: D:\PFE Spark-it\springboot3-angular14-crud\frontend\crud-application
+      context: D:\PFE_Spark-it\springboot3-angular14-crud\frontend\crud-application
       dockerfile: Dockerfile
     ports:
       - "4200:4200"
@@ -39,7 +39,7 @@ services:
 
   app:
     build:
-      context: D:\PFE Spark-it\springboot3-angular14-crud\backend\crud-application
+      context: D:\PFE_Spark-it\springboot3-angular14-crud\backend\crud-application
       dockerfile: Dockerfile
     ports:
       - "9080:8080"
