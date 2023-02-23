@@ -2,6 +2,7 @@ version: '3'
 services:
   sql_server:
     image: mcr.microsoft.com/mssql/server:2017-latest
+    container_name: sql_server
     ports:
         - "1433:1433"
     environment:
@@ -12,8 +13,8 @@ services:
       MSSQL_TCP_PORT: 1433
       name: "sql1"
     networks:
-      my-network:
-        ipv4_address: 172.16.238.10
+      - my-network
+
     restart: always
   adminer:
     image: adminer:latest
@@ -28,6 +29,7 @@ services:
 
 
   frontend:
+    container_name: frontend
     build:
       context: D:\PFE_Spark-it\springboot3-angular14-crud\frontend\crud-application
       dockerfile: Dockerfile
@@ -41,6 +43,7 @@ services:
     build:
       context: D:\PFE_Spark-it\springboot3-angular14-crud\backend\crud-application
       dockerfile: Dockerfile
+    container_name: app
     ports:
       - "9080:8080"
     depends_on:
